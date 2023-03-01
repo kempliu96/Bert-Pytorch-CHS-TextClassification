@@ -77,6 +77,12 @@ def train(config, model, train_iter, dev_iter, test_iter):
                 print("No optimization for a long time, auto-stopping...")
                 flag = True
                 break
+            # modified by kemp
+            if abs(dev_loss - dev_best_loss) < 0.02:
+                print("loss gap < 0.01, auto-stopping...")
+                flag = True
+                break
+            # end by kemp
         if flag:
             break
     test(config, model, test_iter)
